@@ -1,11 +1,11 @@
 export const config = { runtime: "edge" };
 
 export default async function handler(req: Request) {
-  // CORS-afhandeling
+  // CORS-preflight
   if (req.method === "OPTIONS") {
     return new Response(null, { status: 204, headers: corsHeaders() });
   }
-  // Alleen POST-toegang
+  // Alleen POST is toegestaan
   if (req.method !== "POST") {
     return new Response(JSON.stringify({ error: "Use POST" }), { status: 405, headers: corsHeaders() });
   }
@@ -16,7 +16,7 @@ export default async function handler(req: Request) {
       return new Response(JSON.stringify({ error: "Missing 'message'" }), { status: 400, headers: corsHeaders() });
     }
 
-    // Roep de OpenAI API aan
+    // Aanroep naar OpenAI
     const r = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
