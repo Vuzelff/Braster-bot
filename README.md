@@ -1,2 +1,0 @@
-# Braster-bot
-8411328879:AAGelpaUGY7pq4GQANS5sw0ELEh_FoJ2P3o
